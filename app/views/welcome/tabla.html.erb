@@ -26,8 +26,8 @@
   <div class="container">
     <h2>Tabla de verdad de la expresion: <%= @expresion %> </h2>
     <table class ="table table-hover" style="width:100%">
-      <% @m.each do |fila| %>
-          <tr>
+      <% @m.each_with_index do |fila, i| %>
+          <tr class="<% if i == 0 %> thead-dark <% end %>">
             <% fila.each do |val| %>
               <th> <%= val %> </th>
             <% end %>
