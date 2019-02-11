@@ -207,10 +207,10 @@ class WelcomeController < ApplicationController
 	  			if postfija[pos] == "p" || postfija[pos] == "q" || postfija[pos] == "r" || postfija[pos] == "s"
 	  				pila << postfija[pos]
 	  			else
-	  				segundo = pila.pop
-	  				primero = pila.pop
 	  				operando = postfija[pos]
 		  			if operando == "^"
+		  				segundo = pila.pop
+	  					primero = pila.pop
 			  				res = matriz[primero][i] & matriz[segundo][i]
 			  				nuevo = primero +"^" + segundo
 			  				if resultados[nuevo].nil?
@@ -222,6 +222,8 @@ class WelcomeController < ApplicationController
 			  				resultados[nuevo] << res
 			  				matriz[nuevo] << res
 		  			elsif operando == "v"
+		  				segundo = pila.pop
+	  					primero = pila.pop
 		  				res = matriz[primero][i] | matriz[segundo][i]
 		  				nuevo= primero +"v" + segundo
 		  				if resultados[nuevo].nil?
@@ -233,6 +235,8 @@ class WelcomeController < ApplicationController
 		  				matriz[nuevo] << res
 		  				resultados[nuevo] << res
 		  			elsif operando == "→"
+		  				segundo = pila.pop
+	  					primero = pila.pop
 		  				puts "Entro a la flecha"
 		  				nuevo = primero +"→" + segundo
 		  				if resultados[nuevo].nil?
@@ -251,6 +255,8 @@ class WelcomeController < ApplicationController
 		  					matriz[nuevo] << res	
 		  				end
 		  			elsif operando == "↔"
+		  				segundo = pila.pop
+	  					primero = pila.pop
 		  				nuevo = primero +"↔" + segundo
 		  				if resultados[nuevo].nil?
 			  				resultados[nuevo] = []
@@ -268,6 +274,7 @@ class WelcomeController < ApplicationController
 		  					matriz[nuevo] << res
 		  				end
 		  			elsif operando == "~"
+		  				segundo = pila.pop
 		  				res = !matriz[segundo][i]
 		  				nuevo = "~" + segundo
 		  				if resultados[nuevo].nil?
