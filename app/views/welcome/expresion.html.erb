@@ -1,0 +1,38 @@
+
+<%= form_tag("/vxprs", method: "post") do %>
+
+    <div class="form-group">
+      <label for="exampleDropdownFormEmail1">Exprecion P</label>
+      <input type="text" size=30 class="form-control" id="exampleDropdownFormEmail1" placeholder="" name="expr_p">
+      <div>
+      	<input type="radio" name="p_v" value="Verdadero" checked> Verdadero<br>
+      	<input type="radio" name="p_v" value="Falso"> Falso<br>
+      </div>	
+    </div>
+    <br>
+
+    <div class="form-group">
+      <label for="exampleDropdownFormPassword1">Expresion Q</label>
+      <input type="text" size=30 class="form-control" id="exampleDropdownFormPassword1" placeholder="" name="expr_q">
+      <div>
+      	<input type="radio" name="q_v" value="Verdadero" checked> Verdadero<br>
+      	<input type="radio" name="q_v" value="Falso"> Falso<br>
+      </div>
+    </div>
+    <br>
+
+    <div class="form-group">
+      <label for="exampleDropdownFormPassword1">Expresion R</label>
+      <input type="text" size=70 class="form-control" id="exampleDropdownFormPassword1" placeholder="" name="expr_r">
+      <div>
+      	<input type="radio" name="tipo" value="or"> PvQ<br>
+      	<input type="radio" name="tipo" value="and"> P^Q<br>
+      </div>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Validar</button>
+<% end %>
+
+<% if @resultado.present? %>
+	<h2>La frase "<%= @exp_f%>" es <%= @resultado %></h2>
+<% end %>

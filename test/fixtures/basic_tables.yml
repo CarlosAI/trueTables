@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  p: false
+  q: false
+  r: false
+  s: false
+  tipo: 1
+
+two:
+  p: false
+  q: false
+  r: false
+  s: false
+  tipo: 1

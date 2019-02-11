@@ -1,0 +1,40 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+<%= form_tag("/val_table", method: "post") do %>
+    <div class="form-group container">
+      <label for="exampleDropdownFormEmail1" style="width: 30px;">Exprecion</label>
+      <input type="text" size=30 class="form-control" id="exampleDropdownFormEmail1" placeholder="(p=q)=r" name="expresion">
+      <label for="exampleDropdownFormEmail1">Caracteres a usar:</label>
+      <ul>
+  		  <li>Negacion: ~</li>
+  		  <li>Or: v </li>
+  		  <li>And: ^ </li>
+  		  <li>Implicacion(→): →</li>
+  		  <li>Doble Implicacion (↔): ↔ </li>
+  		</ul> 
+      <br>
+      <button type="submit" class="btn btn-primary">Validar</button>
+    </div>
+<% end %>
+
+<% if @resultado == true %>
+  <div class="container">
+    <h2>Tabla de verdad de la expresion: <%= @expresion %> </h2>
+    <table class ="table table-hover" style="width:100%">
+      <% @m.each do |fila| %>
+          <tr>
+            <% fila.each do |val| %>
+              <th> <%= val %> </th>
+            <% end %>
+          </tr>
+      <% end %>
+    </table>
+  </div>
+<% elsif @resultado == false %>	
+  <p>EXPRESION INVALIDA</p>
+<% end %>

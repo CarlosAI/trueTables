@@ -1,0 +1,2 @@
+class BasicTable < ApplicationRecord
+end
