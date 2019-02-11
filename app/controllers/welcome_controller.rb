@@ -223,7 +223,7 @@ class WelcomeController < ApplicationController
 			  				matriz[nuevo] << res
 		  			elsif operando == "v"
 		  				res = matriz[primero][i] | matriz[segundo][i]
-		  				nuevo= primero +"^" + segundo
+		  				nuevo= primero +"v" + segundo
 		  				if resultados[nuevo].nil?
 		  					resultados[nuevo] = []
 		  				end
