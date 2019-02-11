@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/expresion', to: 'welcome#expresion'
 
   post '/vxprs', to: 'welcome#expresion'
-  post '/val_table', to: 'welcome#tabla'
+  post '/tabla', to: 'welcome#tabla'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
