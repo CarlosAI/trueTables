@@ -42,6 +42,7 @@ class WelcomeController < ApplicationController
 				@m = res.values.map { |a| a += [nil] * (size - a.length) }.transpose.insert(0, res.keys)
 				@expresion = expresion
 			else
+				puts "Error"
 				@resultado = false
 			end
 	  	else
@@ -291,5 +292,5 @@ class WelcomeController < ApplicationController
   		end
   		return matriz
   end
-  
+
 end
