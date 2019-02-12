@@ -61,50 +61,12 @@ class WelcomeController < ApplicationController
 
 	  		p_valor = params["p_v"]
 	  		q_valor = params["q_v"]
-	  		tipo = params["tipo"] if params["tipo"].present?
 	  		@exp_f = expresion_r
 
-	  		if tipo.present?
-	  			if tipo == "and"
-	  				puts "el tipo es"
-	  				puts tipo
-		  			if p_valor == q_valor
-		  				@resultado = p_valor
-		  			else
-		  				@resultado = "Falso"
-		  			end
-		  		else
-		  			if p_valor == q_valor && p_valor == "Falso"
-		  				@resultado = "Falso"
-		  			else
-		  				@resultado = "Verdadero"
-		  			end
-		  		end	
+	  		if p_valor == "Verdadero" && q_valor == "Falso"
+	  			@resultado = "Falso"
 	  		else
-	  			puts "las frases son"
-	  			expresion_p = expresion_p.downcase
-	  			expresion_q = expresion_q.downcase
-	  			expresion_r = expresion_r.downcase
-	  			puts expresion_p
-	  			puts "-----"
-	  			expresion_nueva = expresion_r.gsub(expresion_p, "")
-	  			expresion_nueva = expresion_nueva.gsub(expresion_q, "")
-	  			puts "la nueva expresion es:"
-	  			puts expresion_nueva 
-	  			expresion_nueva = expresion_nueva.gsub(" ","")
-	  			if expresion_nueva == "y"
-	  				if p_valor == q_valor
-		  				@resultado = p_valor
-		  			else
-		  				@resultado = "Falso"
-		  			end
-	  			else
-	  				if p_valor == q_valor && p_valor == "Falso"
-		  				@resultado = "Falso"
-		  			else
-		  				@resultado = "Verdadero"
-		  			end
-	  			end
+	  			@resultado = "Verdadero"
 	  		end
 	  	else
 	  		puts "sin params"
