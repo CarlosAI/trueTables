@@ -172,24 +172,39 @@ class WelcomeController < ApplicationController
 						pila << expresion[i]
 					else
 						temp = pila.pop
-						pila << expresion[i]
-						pila << temp
+						if temp == "v" || temp == "→" || temp == "↔"
+							pila << expresion[i]
+							pila << temp
+						else
+							pila << temp
+							pila << expresion[i]
+						end
 					end
 				elsif expresion[i] == "v" 
 					if pila.empty?
 						pila << expresion[i]
 					else
 						temp = pila.pop
-						pila << expresion[i]
-						pila << temp
+						if temp == "→" || temp == "↔"
+							pila << expresion[i]
+							pila << temp
+						else
+							pila << temp
+							pila << expresion[i]
+						end
 					end
 				elsif expresion[i] == "→" 
 					if pila.empty?
 						pila << expresion[i]
 					else
 						temp = pila.pop
-						pila << expresion[i]
-						pila << temp
+						if temp == "↔"
+							pila << expresion[i]
+							pila << temp
+						else
+							pila << temp
+							pila << expresion[i]
+						end
 					end
 				elsif expresion[i] == "↔" 
 					if pila.empty?
@@ -214,7 +229,7 @@ class WelcomeController < ApplicationController
 				end	
 		end
 		for i in(0..pila.size-1)
-			temp = pila.pop
+			temp = pila.shift
 			resultado << temp
 		end
 		puts "LA postifija es"
