@@ -119,28 +119,28 @@ class WelcomeController < ApplicationController
 
 	  	if numero == 1
 	  		p = [false,true]
-	  		v["vector"] = p
+	  		v[params[0]] = p
 	  	elsif numero == 2
 	  		p = [false,true,false,true]
 	  		q = [false,false,true,true]
-	  		v["p"] = q
-	  		v["q"] = p
+	  		v[params[0]] = q
+	  		v[params[1]] = p
 	  	elsif numero == 3
 	  		p = [false,true,false,true,false,true,false,true]
 	  		q = [false,false,true,true,false,false,true,true]
 	  		r = [false,false,false,false,true,true,true,true]
-	  		v["p"] = r
-	  		v["q"] = q
-	  		v["r"] = p
+	  		v[params[0]] = r
+	  		v[params[1]] = q
+	  		v[params[2]] = p
 	  	elsif numero == 4
 	  		p = [false,true,false,true,false,true,false,true,false,true,false,true,false,true,false,true]
 	  		q = [false,false,true,true,false,false,true,true,false,false,true,true,false,false,true,true]
 	  		r = [false,false,false,false,true,true,true,true,false,false,false,false,true,true,true,true]
 	  		s = [false,false,false,false,false,false,false,false,true,true,true,true,true,true,true,true]
-	  		v["p"] = s
-	  		v["q"] = r
-	  		v["r"] = q
-	  		v["s"] = p
+	  		v[params[0]] = s
+	  		v[params[1]] = r
+	  		v[params[2]] = q
+	  		v[params[3]] = p
 	  	else
 	  		puts "Mas de 5 letras"
 	  	end
@@ -243,8 +243,9 @@ class WelcomeController < ApplicationController
   		puts letras
   		puts expresion
   		puts "\n HAsta aqui fue evaluar expresion \n"
-  		size = matriz["p"].size
-  		
+  		size = matriz.first
+  		tamanho = size[1].size
+  		size = tamanho
   		veamos = Array.new
   		resultados = {}
   		for i in(0..size-1)
