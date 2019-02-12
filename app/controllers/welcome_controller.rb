@@ -163,9 +163,11 @@ class WelcomeController < ApplicationController
 					if pila.empty?
 						pila << expresion[i]
 					else
-						temp = pila.pop
-						pila << expresion[i]
-						pila << temp
+						temp = pila.pop # +
+						temp_r = resultado.pop # 4
+						pila << expresion[i] # *
+						resultado << temp
+						resultado << temp_r
 					end
 				elsif expresion[i] == "^" 
 					if pila.empty?
@@ -173,8 +175,10 @@ class WelcomeController < ApplicationController
 					else
 						temp = pila.pop
 						if temp == "v" || temp == "→" || temp == "↔"
-							pila << expresion[i]
-							pila << temp
+							temp_r = resultado.pop # 4
+							pila << expresion[i] # *
+							resultado << temp
+							resultado << temp_r
 						else
 							pila << temp
 							pila << expresion[i]
@@ -186,8 +190,10 @@ class WelcomeController < ApplicationController
 					else
 						temp = pila.pop
 						if temp == "→" || temp == "↔"
-							pila << expresion[i]
-							pila << temp
+							temp_r = resultado.pop # 4
+							pila << expresion[i] # *
+							resultado << temp
+							resultado << temp_r
 						else
 							pila << temp
 							pila << expresion[i]
@@ -199,8 +205,10 @@ class WelcomeController < ApplicationController
 					else
 						temp = pila.pop
 						if temp == "↔"
-							pila << expresion[i]
-							pila << temp
+							temp_r = resultado.pop # 4
+							pila << expresion[i] # *
+							resultado << temp
+							resultado << temp_r
 						else
 							pila << temp
 							pila << expresion[i]
@@ -210,9 +218,9 @@ class WelcomeController < ApplicationController
 					if pila.empty?
 						pila << expresion[i]
 					else
-						temp = pila.pop
+						#temp = pila.pop
 						pila << expresion[i]
-						pila << temp
+						#pila << temp
 					end
 				elsif expresion[i] == "p" || expresion[i] == "q" || expresion[i] == "r" || expresion[i] == "s"
 					resultado << expresion[i]
