@@ -159,26 +159,46 @@ class WelcomeController < ApplicationController
   		for i in(0..a-1)
 				if expresion[i] == "("
 					pila << expresion[i]
-				elsif expresion[i] == "~" 
-					temp = pila.pop
-					pila << expresion[i]
-					pila << temp
+				elsif expresion[i] == "~"
+					if pila.empty?
+						pila << expresion[i]
+					else
+						temp = pila.pop
+						pila << expresion[i]
+						pila << temp
+					end
 				elsif expresion[i] == "^" 
-					temp = pila.pop
-					pila << expresion[i]
-					pila << temp
+					if pila.empty?
+						pila << expresion[i]
+					else
+						temp = pila.pop
+						pila << expresion[i]
+						pila << temp
+					end
 				elsif expresion[i] == "v" 
-					temp = pila.pop
-					pila << expresion[i]
-					pila << temp
+					if pila.empty?
+						pila << expresion[i]
+					else
+						temp = pila.pop
+						pila << expresion[i]
+						pila << temp
+					end
 				elsif expresion[i] == "→" 
-					temp = pila.pop
-					pila << expresion[i]
-					pila << temp
+					if pila.empty?
+						pila << expresion[i]
+					else
+						temp = pila.pop
+						pila << expresion[i]
+						pila << temp
+					end
 				elsif expresion[i] == "↔" 
-					temp = pila.pop
-					pila << expresion[i]
-					pila << temp
+					if pila.empty?
+						pila << expresion[i]
+					else
+						temp = pila.pop
+						pila << expresion[i]
+						pila << temp
+					end
 				elsif expresion[i] == "p" || expresion[i] == "q" || expresion[i] == "r" || expresion[i] == "s"
 					resultado << expresion[i]
 				elsif expresion[i] == ")"
