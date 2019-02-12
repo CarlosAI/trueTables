@@ -253,7 +253,8 @@ class WelcomeController < ApplicationController
 	  		#contador = 0
 	  		pos = 0
 	  		nuevo = nil
-	  		until pila.empty? && pos == postfija.size-1
+	  		b = true
+	  		until b == false
 	  			if pila[0] == "quitar"
 	  				pila.pop
 	  			end
@@ -343,6 +344,7 @@ class WelcomeController < ApplicationController
 			  	
 	  			if pila.empty? && pos == postfija.size-1
 	  				puts "Ya terminamos"
+	  				b = false
 	  			else
 	  				if nuevo.present? 
 	  					pila << nuevo
