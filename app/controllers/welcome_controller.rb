@@ -160,25 +160,15 @@ class WelcomeController < ApplicationController
 				if expresion[i] == "("
 					pila << expresion[i]
 				elsif expresion[i] == "~"
-					if pila.empty?
-						pila << expresion[i]
-					else
-						temp = pila.pop # +
-						temp_r = resultado.pop # 4
-						pila << expresion[i] # *
-						resultado << temp
-						resultado << temp_r
-					end
+					pila << expresion[i]
 				elsif expresion[i] == "^" 
 					if pila.empty?
 						pila << expresion[i]
 					else
 						temp = pila.pop
-						if temp == "v" || temp == "→" || temp == "↔"
-							temp_r = resultado.pop # 4
-							pila << expresion[i] # *
+						if temp == "~" 
 							resultado << temp
-							resultado << temp_r
+							pila << expresion[i] # *
 						else
 							pila << temp
 							pila << expresion[i]
@@ -189,11 +179,9 @@ class WelcomeController < ApplicationController
 						pila << expresion[i]
 					else
 						temp = pila.pop
-						if temp == "→" || temp == "↔"
-							temp_r = resultado.pop # 4
-							pila << expresion[i] # *
+						if temp == "^" || temp == "~"
 							resultado << temp
-							resultado << temp_r
+							pila << expresion[i] # *
 						else
 							pila << temp
 							pila << expresion[i]
@@ -203,12 +191,10 @@ class WelcomeController < ApplicationController
 					if pila.empty?
 						pila << expresion[i]
 					else
-						temp = pila.pop
-						if temp == "↔"
-							temp_r = resultado.pop # 4
-							pila << expresion[i] # *
+						temp = pila.pop #v
+						if temp == "v" || temp == "^" || temp == "~"
 							resultado << temp
-							resultado << temp_r
+							pila << expresion[i] # *
 						else
 							pila << temp
 							pila << expresion[i]
@@ -218,9 +204,14 @@ class WelcomeController < ApplicationController
 					if pila.empty?
 						pila << expresion[i]
 					else
-						#temp = pila.pop
-						pila << expresion[i]
-						#pila << temp
+						temp = pila.pop #v
+						if temp == "v" || temp == "^" || temp == "~" ||  temp == "→"
+							resultado << temp
+							pila << expresion[i] # *
+						else
+							pila << temp
+							pila << expresion[i]
+						end
 					end
 				elsif expresion[i] == "p" || expresion[i] == "q" || expresion[i] == "r" || expresion[i] == "s"
 					resultado << expresion[i]
@@ -237,7 +228,7 @@ class WelcomeController < ApplicationController
 				end	
 		end
 		for i in(0..pila.size-1)
-			temp = pila.shift
+			temp = pila.pop
 			resultado << temp
 		end
 		puts "LA postifija es"
@@ -262,7 +253,7 @@ class WelcomeController < ApplicationController
 	  		#contador = 0
 	  		pos = 0
 	  		nuevo = nil
-	  		until pila.empty?
+	  		until pila.empty? && pos == postfija.size-1
 	  			if pila[0] == "quitar"
 	  				pila.pop
 	  			end
@@ -349,10 +340,11 @@ class WelcomeController < ApplicationController
 		  				matriz[nuevo] << res
 			  		end
 			  	end
-	  			if pila.empty?
+			  	
+	  			if pila.empty? && pos == postfija.size-1
 	  				puts "Ya terminamos"
 	  			else
-	  				if nuevo.present?
+	  				if nuevo.present? 
 	  					pila << nuevo
 	  				end
 	  			end
