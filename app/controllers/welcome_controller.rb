@@ -264,20 +264,22 @@ class WelcomeController < ApplicationController
 	  				operando = postfija[pos]
 		  			if operando == "^"
 		  				segundo = pila.pop
-	  					primero = pila.pop
-			  				res = matriz[primero][i] & matriz[segundo][i]
-			  				nuevo = primero +"^" + segundo
-			  				if resultados[nuevo].nil?
-			  					resultados[nuevo] = []
-			  				end
-			  				if matriz[nuevo].nil?
-			  					matriz[nuevo] = []
-			  				end
-			  				resultados[nuevo] << res
-			  				matriz[nuevo] << res
+	  					primero = pila.last
+		  				res = matriz[primero][i] & matriz[segundo][i]
+		  				nuevo = primero +"^" + segundo
+		  				if resultados[nuevo].nil?
+		  					resultados[nuevo] = []
+		  				end
+		  				if matriz[nuevo].nil?
+		  					matriz[nuevo] = []
+		  				end
+		  				resultados[nuevo] << res
+		  				matriz[nuevo] << res
+		  				pila.pop
+		  				pila << nuevo
 		  			elsif operando == "v"
 		  				segundo = pila.pop
-	  					primero = pila.pop
+	  					primero = pila.last
 		  				res = matriz[primero][i] | matriz[segundo][i]
 		  				nuevo= primero +"v" + segundo
 		  				if resultados[nuevo].nil?
@@ -288,9 +290,11 @@ class WelcomeController < ApplicationController
 		  				end
 		  				matriz[nuevo] << res
 		  				resultados[nuevo] << res
+		  				pila.pop
+		  				pila << nuevo
 		  			elsif operando == "→"
 		  				segundo = pila.pop
-	  					primero = pila.pop
+	  					primero = pila.last
 		  				puts "Entro a la flecha"
 		  				nuevo = primero +"→" + segundo
 		  				if resultados[nuevo].nil?
@@ -308,9 +312,11 @@ class WelcomeController < ApplicationController
 		  					resultados[nuevo] << res
 		  					matriz[nuevo] << res	
 		  				end
+		  				pila.pop
+		  				pila << nuevo
 		  			elsif operando == "↔"
 		  				segundo = pila.pop
-	  					primero = pila.pop
+	  					primero = pila.last
 		  				nuevo = primero +"↔" + segundo
 		  				if resultados[nuevo].nil?
 			  				resultados[nuevo] = []
@@ -339,16 +345,15 @@ class WelcomeController < ApplicationController
 		  				end
 		  				resultados[nuevo] << res
 		  				matriz[nuevo] << res
+		  				pila << nuevo
 			  		end
 			  	end
 			  	
-	  			if pila.empty? && pos == postfija.size-1
+	  			if pila.empty? || pos == postfija.size-1
 	  				puts "Ya terminamos"
 	  				b = false
 	  			else
-	  				if nuevo.present? 
-	  					pila << nuevo
-	  				end
+	  				puts "nada"
 	  			end
 	  			pos = pos + 1
 	  		end
