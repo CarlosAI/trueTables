@@ -7,6 +7,10 @@ class CarsController < ApplicationController
   # GET /cars.json
 
   def nuevo
+    a = PreubaClaseJob.set(wait: 10.seconds).perform_later(1)
+    a = PreubaClaseJob.perform_now(1)
+    puts "\nEl result es\n"
+    puts a
   end
 
   def nuevo2
