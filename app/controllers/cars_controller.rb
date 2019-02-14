@@ -1,8 +1,18 @@
 class CarsController < ApplicationController
   before_action :set_car, only: [:show, :edit, :update, :destroy]
+   skip_before_action :verify_authenticity_token, :only => [:nuevo2]
 
+  layout 'layout_registrar'
   # GET /cars
   # GET /cars.json
+
+  def nuevo
+  end
+
+  def nuevo2
+  end
+
+
   def index
     @cars = Car.all
   end

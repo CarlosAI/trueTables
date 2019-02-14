@@ -3,6 +3,26 @@ Rails.application.routes.draw do
   resources :users
   root 'welcome#index'
 
+  get '/registrar', to: 'cars#nuevo'
+  post 'registrar_carro_nuevo', to: 'cars#nuevo2'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   get '/tabla', to: 'welcome#tabla'
   get '/expresion', to: 'welcome#expresion'
 
